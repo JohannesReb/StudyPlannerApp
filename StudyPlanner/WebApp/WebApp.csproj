@@ -1,0 +1,493 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>aspnet-WebApp-C144D594-6982-425A-92EF-CD714F3C0EF1</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
+        <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.3.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.5" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.8" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.8.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\App.BLL\App.BLL.csproj" />
+      <ProjectReference Include="..\App.DAL.EF\App.DAL.EF.csproj" />
+      <ProjectReference Include="..\App.DTO\App.DTO.csproj" />
+      <ProjectReference Include="..\App.Resources\App.Resources.csproj" />
+      <ProjectReference Include="..\Base.Resources\Base.Resources.csproj" />
+      <ProjectReference Include="..\Helpers\Helpers.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Areas\Admin\Controllers\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Views\Calendar\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Calendar\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Calendar\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Calendar\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Calendar\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Statistics\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Statistics\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Statistics\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Statistics\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Statistics\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Subjects\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Subjects\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Subjects\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Subjects\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Subjects\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeTable\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeTable\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeTable\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeTable\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeTable\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Details\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Details\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Details\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Details\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Details\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\SubjectsDetails\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\SubjectsDetails\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\SubjectsDetails\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\SubjectsDetails\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\SubjectsDetails\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Curriculums\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Curriculums\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Curriculums\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Curriculums\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Curriculums\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Ewents\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Ewents\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Ewents\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Ewents\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Ewents\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Fields\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Fields\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Fields\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Fields\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Fields\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Modules\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Modules\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Modules\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Modules\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Modules\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Subjects\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Subjects\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Subjects\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Subjects\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Subjects\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\TimeWindows\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\TimeWindows\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\TimeWindows\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\TimeWindows\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\TimeWindows\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserCurriculums\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserCurriculums\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserCurriculums\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserCurriculums\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserCurriculums\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserEwents\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserEwents\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserEwents\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserEwents\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserEwents\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserFields\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserFields\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserFields\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserFields\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserFields\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Users\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Users\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Users\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Users\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Users\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserSubjects\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserSubjects\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserSubjects\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserSubjects\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserSubjects\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserWorkTasks\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserWorkTasks\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserWorkTasks\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserWorkTasks\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\UserWorkTasks\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTasks\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTasks\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTasks\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTasks\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTasks\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTaskTimeWindows\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTaskTimeWindows\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTaskTimeWindows\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTaskTimeWindows\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\WorkTaskTimeWindows\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AccessTypes\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AccessTypes\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AccessTypes\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AccessTypes\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\AccessTypes\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Curriculums\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Curriculums\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Curriculums\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Curriculums\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Curriculums\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\EwentRoles\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\EwentRoles\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\EwentRoles\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\EwentRoles\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\EwentRoles\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Ewents\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Ewents\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Ewents\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Ewents\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Ewents\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Fields\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Fields\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Fields\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Fields\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Fields\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Modules\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Modules\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Modules\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Modules\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Modules\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Semesters\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Semesters\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Semesters\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Semesters\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Semesters\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Status\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Status\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Status\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Status\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\Status\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\SubjectRoles\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\SubjectRoles\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\SubjectRoles\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\SubjectRoles\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\SubjectRoles\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TaskTypes\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TaskTypes\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TaskTypes\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TaskTypes\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TaskTypes\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeWindows\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeWindows\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeWindows\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeWindows\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\TimeWindows\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCurriculums\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCurriculums\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCurriculums\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCurriculums\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserCurriculums\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserEwents\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserEwents\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserEwents\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserEwents\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserEwents\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserFields\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserFields\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserFields\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserFields\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserFields\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserSubjects\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserSubjects\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserSubjects\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserSubjects\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserSubjects\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserWorkTasks\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserWorkTasks\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserWorkTasks\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserWorkTasks\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\UserWorkTasks\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskRoles\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskRoles\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskRoles\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskRoles\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskRoles\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTasks\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTasks\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTasks\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTasks\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTasks\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskTimeWindows\Create.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskTimeWindows\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskTimeWindows\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskTimeWindows\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Views\WorkTaskTimeWindows\Index.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Public\Views\SubjectsGeneral\Delete.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Public\Views\SubjectsGeneral\Details.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Public\Views\SubjectsGeneral\Edit.cshtml" />
+      <_ContentIncludedByDefault Remove="Areas\Public\Views\SubjectsGeneral\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Areas\Admin\Views\Curriculums\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Curriculums\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Curriculums\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Curriculums\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Curriculums\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\EwentRoles\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\EwentRoles\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\EwentRoles\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\EwentRoles\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\EwentRoles\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Ewents\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Ewents\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Ewents\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Ewents\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Ewents\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Modules\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Modules\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Modules\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Modules\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Modules\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\SubjectRoles\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\SubjectRoles\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\SubjectRoles\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\SubjectRoles\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\SubjectRoles\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Subject\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Subject\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Subject\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Subject\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\Subject\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\TimeWindows\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\TimeWindows\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\TimeWindows\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\TimeWindows\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\TimeWindows\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserCurriculums\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserCurriculums\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserCurriculums\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserCurriculums\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserCurriculums\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserEwents\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserEwents\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserEwents\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserEwents\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserEwents\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserFields\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserFields\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserFields\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserFields\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserFields\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserSubjects\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserSubjects\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserSubjects\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserSubjects\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserSubjects\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserWorkTasks\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserWorkTasks\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserWorkTasks\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserWorkTasks\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\UserWorkTasks\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskRoles\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskRoles\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskRoles\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskRoles\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskRoles\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTasks\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTasks\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTasks\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTasks\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTasks\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskTimeWindows\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskTimeWindows\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskTimeWindows\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskTimeWindows\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Admin\Views\WorkTaskTimeWindows\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\Calendar\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\Calendar\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\Calendar\Details.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\Calendar\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\Calendar\Index.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\TimeTable\Create.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\TimeTable\Delete.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\TimeTable\Edit.cshtml" />
+      <AdditionalFiles Include="Areas\Public\Views\TimeTable\Index.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Views\Subjects\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Subjects\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\SubjectRoles\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\TimeWindows\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserCurriculums\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserEwents\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserFields\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserSubjects\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\UserWorkTasks\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskRoles\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTasks\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\WorkTaskTimeWindows\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Modules\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Ewents\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\EwentRoles\Index.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Create.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Delete.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Details.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Edit.cshtml" />
+      <UpToDateCheckInput Remove="Views\Curriculums\Index.cshtml" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+</Project>

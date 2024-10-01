@@ -1,0 +1,97 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.IdentityModel.Tokens
+@using WebApp.Helpers
+@model WebApp.Areas.Public.ViewModels.SubjectsTaskDetailsDeleteViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    var roles = "";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Task</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkTask.Label)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkTask.Label)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkTask.Deadline)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkTask.Deadline)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkTask.TimeExpectancy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkTask.TimeExpectancy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkTask.Code)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkTask.Code)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkTask.TaskType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkTask.TaskType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkTask.Field)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkTask.Field)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.WorkTask.Subject)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.WorkTask.Subject!.Label)
+        </dd>
+        @if (!Model.UserWorkTasks.IsNullOrEmpty())
+        {
+            <dt class = "col-sm-2">
+                @Html.DisplayNameFor(model => model.UserWorkTasks[0].Status)
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.UserWorkTasks[0].Status)
+            </dd>
+        }
+        @if (!Model.WorkTaskRoles.IsNullOrEmpty())
+        {
+            <dt class="col-sm-2">
+                Shared
+            </dt>
+            foreach (var role in Model.WorkTaskRoles.Select(w => w.Role!.Name))
+            {
+                roles += role + " | ";
+            }
+            
+            if (roles.Length >= 2)
+            {
+                roles = roles[..^2];
+            }
+            
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => roles)
+            </dd>
+            <dt class="col-sm-2">
+                Rights
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.WorkTaskRoles[0].AccessType)
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a asp-action="Index" asp-route-subjectId="@Model.SubjectId">Back to List</a>
+</div>

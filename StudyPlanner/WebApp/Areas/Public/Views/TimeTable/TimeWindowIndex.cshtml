@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebApp.Areas.Public.ViewModels.TimeTableIndexViewModel
+
+@{
+ViewData["Title"] = "TimeWindowIndex";
+}
+<h3>
+    <p>
+        <a class="text-dark" asp-action="Index">Study Plan</a> |
+        <a class="text-dark" asp-action="TimeWindowIndex">Time Windows</a>
+    </p>
+</h3>
+<h1>Time Windows</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeWindow.From)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeWindow.Until)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.TimeWindows) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.From)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Until)
+        </td>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>

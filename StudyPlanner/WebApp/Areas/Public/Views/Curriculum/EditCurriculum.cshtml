@@ -1,0 +1,60 @@
+﻿@using App.Domain
+@model WebApp.Areas.Public.ViewModels.CurriculumCreateEditCurriculumViewModel
+
+@{
+ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Curriculum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditCurriculum">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Curriculum.Label" class="control-label"></label>
+                <input asp-for="Curriculum.Label" class="form-control" />
+                <span asp-validation-for="Curriculum.Label" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curriculum.Code" class="control-label"></label>
+                <input asp-for="Curriculum.Code" class="form-control" />
+                <span asp-validation-for="Curriculum.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curriculum.Manager" class="control-label">Manager</label>
+                <input asp-for="Curriculum.Manager" class="form-control" />
+                <span asp-validation-for="Curriculum.Manager" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curriculum.From" class="control-label"></label>
+                <input asp-for="Curriculum.From" class="form-control" />
+                <span asp-validation-for="Curriculum.From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curriculum.Until" class="control-label"></label>
+                <input asp-for="Curriculum.Until" class="form-control" />
+                <span asp-validation-for="Curriculum.Until" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Curriculum.Semesters" class="control-label"></label>
+                <input asp-for="Curriculum.Semesters" class="form-control" />
+                <span asp-validation-for="Curriculum.Semesters" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Curriculum.Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-curriculumId="@Model.Curriculum.Id">Back to List</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

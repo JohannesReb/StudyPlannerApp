@@ -1,0 +1,135 @@
+@using App.Domain
+@model WebApp.Areas.Public.ViewModels.TimeTableIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h3>
+    <p>
+        <a class="text-dark" asp-action="Index">Study Plan</a> |
+        <a class="text-dark" asp-action="TimeWindowIndex">Time Windows</a>
+    </p>
+</h3>
+<h1>Study Plan</h1>
+
+<table class="table">
+    <tr>
+        <td>
+            <h4>Time Windows</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimeWindow.From)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimeWindow.Until)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimeWindow.FreeTime)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.TimeWindows)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.From)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Until)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FreeTime)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+        <td>
+            <h4>Tasks</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Label)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Deadline)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.TimeExpectancy)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.TaskType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Field)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserWorkTask.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserWorkTask.TimeSpent)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.UserWorkTasks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Label)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Deadline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.TimeExpectancy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.TaskType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Field)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeSpent)
+                        </td>
+                        <td>
+                            @if (item.Status.Equals(EStatus.Claimed) || item.Status.Equals(EStatus.Paused))
+                            {
+                                if (!Model.WorkTaskTimeWindows.Select(w => w.WorkTaskId).Contains(item.WorkTaskId))
+                                {
+                                    <a asp-action="Add" asp-route-id="@item.Id">Add</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Remove" asp-route-id="@item.WorkTaskId">Remove</a>
+                                }
+                                <a asp-action="Start" asp-route-id="@item.Id">Start</a>
+                            }
+                            else if (item.Status.Equals(EStatus.Pending))
+                            {
+                                <a asp-action="Finish" asp-route-id="@item.Id">Finish</a>
+                                <a asp-action="Pause" asp-route-id="@item.Id">Pause</a>
+                            }
+                            else if (item.Status.Equals(EStatus.Completed))
+                            {
+                            <a asp-action="Finish" asp-route-id="@item.Id">Edit</a>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

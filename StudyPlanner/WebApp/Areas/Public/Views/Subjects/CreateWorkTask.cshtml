@@ -1,0 +1,75 @@
+﻿@using App.Domain
+@model WebApp.Areas.Public.ViewModels.SubjectsCreateEditTaskViewModel
+
+@{
+ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Task</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateWorkTask">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="WorkTask.Label" class="control-label"></label>
+                <input asp-for="WorkTask.Label" class="form-control" />
+                <span asp-validation-for="WorkTask.Label" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkTask.Deadline" class="control-label"></label>
+                <input asp-for="WorkTask.Deadline" class="form-control" />
+                <span asp-validation-for="WorkTask.Deadline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkTask.TimeExpectancy" class="control-label">Time Expectancy (d.h:m:s)</label>
+                <input asp-for="WorkTask.TimeExpectancy" class="form-control" />
+                <span asp-validation-for="WorkTask.TimeExpectancy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkTask.Code" class="control-label">Code</label>
+                <select asp-for="WorkTask.Code" class="form-control" asp-items="@Model.WorkTaskCodeSelectList">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkTask.ParentWorkTaskId" class="control-label">Parent Task</label>
+                <select asp-for="WorkTask.ParentWorkTaskId" class="form-control" asp-items="@Model.ParentWorkTaskSelectList">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkTask.Field" class="control-label">Field</label>
+                <select asp-for="WorkTask.Field" class ="form-control" asp-items="@Html.GetEnumSelectList<EField>()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkTask.TaskType" class="control-label">Task Type</label>
+                <select asp-for="WorkTask.TaskType" class ="form-control" asp-items="@Html.GetEnumSelectList<ETaskType>()"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Roles" class="control-label">Share</label>
+                <select asp-for="Roles" class="form-control" asp-items="@Model.RoleSelectList">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccessType" class="control-label">Rights</label>
+                <select asp-for="AccessType" class="form-control" asp-items="@Html.GetEnumSelectList<EAccessType>()"></select>
+            </div>
+            <input type="hidden" asp-for="WorkTask.SubjectId" />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-subjectId="@Model.WorkTask.SubjectId">Back to List</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

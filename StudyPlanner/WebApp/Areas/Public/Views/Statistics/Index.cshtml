@@ -1,0 +1,120 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebApp.Areas.Public.ViewModels.StatisticsIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Statistics</h1>
+@if (Model.Subject != null)
+{
+<h2>@(Model.Subject.Label)</h2>
+}
+
+<h3>
+    <p>
+        <a class="text-dark" asp-area="Public" asp-controller="Statistics" asp-action="Index">All</a>
+
+        @foreach (var item in Model.Subjects)
+        {
+        @(" | ")
+        <a class="text-dark" asp-area="Public" asp-controller="Statistics" asp-route-subjectId="@item.Id" asp-action="Index">@item.Label</a>
+        }
+    </p>
+</h3>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Total Time Spent
+        </th>
+        <th>
+            Tasks Completed
+        </th>
+        <th>
+            Tasks Not Yet Completed
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            @(Model.TotalTimeSpent)min
+        </td>
+        <td>
+            @Model.TasksCompleted
+        </td>
+        <td>
+            @Model.TasksNotYetCompleted
+        </td>
+    </tr>
+    </tbody>
+    <tr>
+        <td>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Label)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Deadline)
+                    </th>
+                    <th>
+                        Time Expectancy
+                    </th>
+                    <th>
+                        Task Type
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Field)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserWorkTask.Status)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserWorkTask.Result)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserWorkTask.TimeSpent)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.UserWorkTasks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Label)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Deadline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.TimeExpectancy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.TaskType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Field)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Result)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeSpent)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

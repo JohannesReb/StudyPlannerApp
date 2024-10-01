@@ -1,0 +1,195 @@
+@using App.Domain
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebApp.Areas.Public.ViewModels.CurriculumIndexViewModel
+
+@{
+ViewData["Title"] = "Index";
+}
+
+
+<h3>
+    <p>
+        @foreach (var item in Model.Curriculums)
+        {
+            <a class="text-dark" asp-area="Public" asp-controller="Curriculum" asp-route-curriculumId="@item.Id" asp-action="Index">@item.Label</a>
+        }
+        @(" | ")
+        <a class="text-dark" asp-area="Public" asp-controller="Curriculum" asp-action="CreateCurriculum">Create New Curriculum</a>
+    </p>
+</h3>
+
+@if (Model.Curriculum != null)
+{
+
+<h4>
+    <p>
+        <a class="text-dark" asp-area="Public" asp-controller="Curriculum" asp-route-curriculumId="@Model.CurriculumId" asp-action="Index">All</a>
+
+        @foreach (var item in Model.Modules)
+        {
+        @(" | ")
+        <a class="text-dark" asp-area="Public" asp-controller="Curriculum" asp-route-moduleId="@item.Id" asp-route-curriculumId="@Model.CurriculumId" asp-action="Index">@item.Label (@(item.EAP) EAP)</a>
+        }
+    </p>
+</h4>
+
+<h1>@(Model.Curriculum.Label) (@(Model.Curriculum.Code))</h1>
+<div>
+    <a asp-action="Choose" asp-route-id="@Model.Curriculum.Id">Choose</a> |
+    <a asp-action="EditCurriculum" asp-route-id="@Model.Curriculum.Id">Edit @Model.Curriculum?.Label</a> |
+    <a asp-action="Details" asp-route-id="@Model.Curriculum.Id">@Model.Curriculum?.Label Details</a> |
+    <a asp-action="DeleteCurriculum" asp-route-id="@Model.Curriculum.Id">Delete @Model.Curriculum?.Label</a>
+</div>
+
+<p>
+    <a asp-action="CreateModule"  asp-route-curriculumId="@Model.CurriculumId">Create New Module</a>
+</p>
+}
+else
+{
+<h1>Curricula</h1>
+}
+
+
+
+@if (Model.Module != null)
+{
+<h2>@(Model.Module.Label) (@(Model.Module.EAP) EAP)</h2>
+<div>
+    <a asp-action="EditModule" asp-route-id="@Model.Module.Id" asp-route-curriculumId="@Model.CurriculumId">Edit @Model.Module?.Label</a> |
+    <a asp-action="DeleteModule" asp-route-id="@Model.Module.Id" asp-route-curriculumId="@Model.CurriculumId">Delete @Model.Module?.Label</a>
+</div>
+}
+else
+{
+<h2>Subjects</h2>
+}
+
+
+@if (Model.Curriculum != null)
+{
+    <table class="table">
+        <tr>
+            <td>
+                Completed EAP: @Model.Completed
+            </td>
+            <td>
+                Missing EAP: @Model.Missing
+            </td>
+            <td>
+                Declared EAP: @Model.Declared
+            </td>
+            <td>
+                Not Declared EAP: @Model.NotDeclared
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <tr>
+            <td>
+                <h4>Public</h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject.Label)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject.EAP)
+                        </th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.PublicSubjects)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Label)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EAP)
+                            </td>
+                            @if (Model.Module != null)
+                            {
+                            <td>
+                                <a asp-action="Add" asp-route-id="@item.Id" asp-route-curriculumId="@Model.CurriculumId" asp-route-moduleId="@Model.ModuleId">Add</a>
+                            </td>
+                            }
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </td>
+            <td></td>
+            <td>
+                <h4>Selected</h4>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject.Label)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject.EAP)
+                        </th>
+                        @if (Model.Module != null)
+                        {
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserSubject.Status)
+                        </th>
+                        }
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @if (Model.Module != null)
+                    {
+                        @foreach (var item in Model.UserSubjects)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject!.Label)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Subject!.EAP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    <a asp-action="Remove" asp-route-id="@item.SubjectId" asp-route-curriculumId="@Model.CurriculumId" asp-route-moduleId="@Model.ModuleId">Remove</a>
+                                    @if (item.Status.Equals(EStatus.Claimed))
+                                    {
+                                        <a asp-action="Start" asp-route-id="@item.SubjectId" asp-route-curriculumId="@Model.CurriculumId" asp-route-moduleId="@Model.ModuleId">Start</a>
+                                    }
+                                    else if (item.Status.Equals(EStatus.Pending))
+                                    {
+                                        <a asp-action="Finish" asp-route-id="@item.SubjectId" asp-route-curriculumId="@Model.CurriculumId" asp-route-moduleId="@Model.ModuleId">Finish</a>
+                                        @* <a asp-action="Pause" asp-route-id="@item.Id">Start</a> *@
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var item in Model.ChosenSubjects)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Label)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EAP)
+                                </td>
+                            </tr>
+                        }
+                    }
+                    
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+}

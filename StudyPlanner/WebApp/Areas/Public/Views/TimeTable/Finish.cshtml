@@ -1,0 +1,40 @@
+﻿@model WebApp.Areas.Public.ViewModels.TimeTableFinishViewModel
+
+@{
+ViewData["Title"] = "Edit";
+}
+
+<h1>Finish Task</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Finish">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserWorkTask.TimeSpent" class="control-label">Time Spent (d.h:m:s)</label>
+                <input asp-for="UserWorkTask.TimeSpent" class="form-control" />
+                <span asp-validation-for="UserWorkTask.TimeSpent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserWorkTask.Result" class="control-label">Result</label>
+                <input asp-for="UserWorkTask.Result" class="form-control" />
+                <span asp-validation-for="UserWorkTask.Result" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="UserWorkTask.UserId" />
+            <input type="hidden" asp-for="UserWorkTask.WorkTaskId" />
+            <input type="hidden" asp-for="UserWorkTask.Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

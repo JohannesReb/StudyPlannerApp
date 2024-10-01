@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - WebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true"/>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@App.Resources.Views.Shared._Layout.Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@App.Resources.Views.Shared._Layout.Privacy</a>
+                    </li>
+
+                    @if (User.IsInRole("Public"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Public" asp-controller="Calendar" asp-action="Index">Calendar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Public" asp-controller="TimeTable" asp-action="Index">TimeTable</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Public" asp-controller="Subjects" asp-action="Index">Subjects</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Public" asp-controller="Curriculum" asp-action="Index">Curricula</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="Public" asp-controller="Statistics" asp-action="Index">Statistics</a>
+                        </li>
+                    }
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item dropdown text-dark">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Admin
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Curriculums" asp-action="Index">Curriculums</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="EwentRoles" asp-action="Index">EwentRoles</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Ewents" asp-action="Index">Ewents</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Modules" asp-action="Index">Modules</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="SubjectRoles" asp-action="Index">SubjectRoles</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="Subject" asp-action="Index">Subjects</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="TimeWindows" asp-action="Index">TimeWindows</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="UserCurriculums" asp-action="Index">UserCurriculums</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="UserEwents" asp-action="Index">UserEwents</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="UserFields" asp-action="Index">UserFields</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="UserSubjects" asp-action="Index">UserSubjects</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="UserWorkTasks" asp-action="Index">UserWorkTasks</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="WorkTaskRoles" asp-action="Index">WorkTaskRoles</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="WorkTasks" asp-action="Index">WorkTasks</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item nav-link text-dark" asp-area="Admin" asp-controller="WorkTaskTimeWindows" asp-action="Index">WorkTaskTimeWindows</a>
+                                </li>
+                            </ul>
+                        </li>
+                    }
+                </ul>
+                <partial name="_LanguageSelectionPartial"/>
+                <partial name="_LoginPartial"/>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top footer text-muted">
+    <div class="container">
+        &copy; 2024 - WebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">@App.Resources.Views.Shared._Layout.Privacy</a> | @Thread.CurrentThread.CurrentCulture.Name | @Thread.CurrentThread.CurrentUICulture.Name
+    </div>
+</footer>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿@using App.Domain
+@model WebApp.Areas.Public.ViewModels.SubjectsCreateEditSubjectViewModel
+
+@{
+ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Subject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditSubject">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Subject.Label" class="control-label"></label>
+                <input asp-for="Subject.Label" class="form-control" />
+                <span asp-validation-for="Subject.Label" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject.Description" class="control-label"></label>
+                <input asp-for="Subject.Description" class="form-control" />
+                <span asp-validation-for="Subject.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject.EAP" class="control-label"></label>
+                <input asp-for="Subject.EAP" class="form-control" />
+                <span asp-validation-for="Subject.EAP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Subject.ModuleId" class="control-label">Module</label>
+                <select asp-for="Subject.ModuleId" class="form-control" asp-items="@Model.ModuleSelectList">
+                    <option></option>
+                </select>
+            </div>
+            @if (Model.Subject.CreatedBy == Model.UserId || Model.AccessTypes.Contains(EAccessType.Admin))
+            {
+            <div class="form-group">
+                <label asp-for="Roles" class="control-label">Share</label>
+                <select asp-for="Roles" class="form-control" asp-items="@Model.RoleSelectList">
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="AccessType" class="control-label">Rights</label>
+                <select asp-for="AccessType" class="form-control" asp-items="@Html.GetEnumSelectList<EAccessType>()"></select>
+            </div>
+            }
+            else
+            {
+            <input type="hidden" asp-for="Roles" multiple="multiple"/>
+            <input type="hidden" asp-for="AccessType" />
+            }
+            <input type="hidden" asp-for="Subject.Id" />
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="Subject.CreatedBy" />
+            <input type="hidden" asp-for="Subject.CreatedAt" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-subjectId="@Model.Subject.Id">Back to List</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

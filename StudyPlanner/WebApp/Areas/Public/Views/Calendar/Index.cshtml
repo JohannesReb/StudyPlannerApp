@@ -1,0 +1,138 @@
+@using App.Domain
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebApp.Areas.Public.ViewModels.CalendarIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    IEnumerable<EAccessType> roles;
+}
+
+<h1>Calendar</h1>
+
+<p>
+    <a asp-action="Create">Create New Event</a>
+</p>
+
+<table class="table">
+    <tr>
+        <td>
+            <h4>Events</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ewent.Label)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ewent.From)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ewent.Until)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Ewent.Subject)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.Ewents) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Label)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.From)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Until)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject!.Label)
+                    </td>
+
+                    @{
+                    roles = Model.EwentRoles.Where(e => e.EwentId == item.Id).Select(e => e.AccessType).ToList();
+                    }
+
+                    @if (item.CreatedBy == Model.UserId || roles.Contains(EAccessType.Admin) || roles.Contains(EAccessType.Edit))
+                    {
+                    <td>
+                        <a asp-action="Details" asp-route-Id="@item.Id">Details</a> |
+                        <a asp-action="Edit" asp-route-Id="@item.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-Id="@item.Id">Delete</a>
+                    </td>
+                    }
+                    else
+                    {
+                    <td>
+                        <a asp-action="Details" asp-route-Id="@item.Id">Details</a>
+                    </td>
+                    }
+                </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+        <td></td>
+        <td>
+            <h4>Tasks</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Label)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Deadline)
+                    </th>
+                    <th>
+                        Time Expectancy
+                    </th>
+                    <th>
+                        Task Type
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Field)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimeWindow.From)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TimeWindow.Until)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.WorkTaskTimeWindows)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Label)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Deadline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.TimeExpectancy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.TaskType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkTask!.Field)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeWindow!.From)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeWindow!.Until)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

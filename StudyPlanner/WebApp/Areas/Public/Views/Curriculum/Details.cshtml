@@ -1,0 +1,54 @@
+@model WebApp.Areas.Public.ViewModels.CurriculumDetailsDeleteViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Curriculum</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Curriculum.Code)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Curriculum.Code)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Curriculum.Label)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Curriculum.Label)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Curriculum.Manager)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Curriculum.Manager)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Curriculum.From)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Curriculum.From)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Curriculum.Until)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Curriculum.Until)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Curriculum.Semesters)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Curriculum.Semesters)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="EditCurriculum" asp-route-id="@Model.Curriculum.Id">Edit</a> |
+    <a asp-action="Index" asp-route-curriculumId="@Model.Curriculum.Id">Back to List</a>
+</div>

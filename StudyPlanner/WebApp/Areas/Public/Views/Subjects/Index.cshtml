@@ -1,0 +1,227 @@
+@using App.Domain
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model WebApp.Areas.Public.ViewModels.SubjectsIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    List<EAccessType> roles;
+}
+
+
+@if (Model.Subject != null)
+{
+    <h1>@(Model.Subject.Label)</h1>
+
+    if (Model.Subject.CreatedBy == Model.UserId || Model.SubjectAccessTypes.Contains(EAccessType.Admin) || Model.SubjectAccessTypes.Contains(EAccessType.Edit))
+    {
+        <div>
+            <a asp-action="SubjectDetails" asp-route-id="@Model.SubjectId">Details</a> |
+            <a asp-action="EditSubject" asp-route-id="@Model.SubjectId">Edit</a> |
+            <a asp-action="DeleteSubject" asp-route-id="@Model.SubjectId">Delete</a>
+        </div>
+    }
+    else
+    {
+        <div>
+            <a asp-action="SubjectDetails" asp-route-id="@Model.SubjectId">Details</a>
+        </div>
+    }
+    
+    <p>
+        <a asp-action="CreateWorkTask" asp-route-subjectId="@Model.Subject.Id">Create New Task</a>
+    </p>
+}
+else
+{
+    <h1>Subjects</h1>
+
+    <p>
+        <a asp-action="CreateSubject">Create New Subject</a>
+    </p>
+}
+
+<h3>
+    <p>
+        <a class="text-dark" asp-area="Public" asp-controller="Subjects" asp-action="Index">All</a>
+    
+    @foreach (var item in Model.Subjects)
+    {
+        @(" | ")
+        <a class="text-dark" asp-area="Public" asp-controller="Subjects" asp-route-subjectId="@item.Id" asp-action="Index">@item.Label</a>
+    }
+    </p>
+</h3>
+
+@if (Model.Subject != null)
+{
+    <h3>Description</h3>
+    <div>
+        @Model.Subject?.Description
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <td>
+            <h4>Public</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Label)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Deadline)
+                    </th>
+                    <th>
+                        Time Expectancy
+                    </th>
+                    <th>
+                        Task Type
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Field)
+                    </th>
+                    <th>
+                        Parent Task
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Subject)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.PublicWorkTasks)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Label)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Deadline)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeExpectancy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TaskType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Field)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentWorkTask!.Label)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Subject!.Label)
+                        </td>
+
+                        @{
+                            roles = Model.WorkTaskRoles.Where(w => w.WorkTaskId == item.Id).Select(w => w.AccessType).ToList();
+                        }
+
+                        @if (item.CreatedBy == Model.UserId || roles.Contains(EAccessType.Admin) || roles.Contains(EAccessType.Edit))
+                        {
+                            <td>
+                                <a asp-action="WorkTaskDetails" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Details</a> |
+                                <a asp-action="EditWorkTask" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Edit</a> |
+                                <a asp-action="DeleteWorkTask" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Delete</a> |
+                                <a asp-action="Add" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Add</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                <a asp-action="WorkTaskDetails" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Details</a> |
+                                <a asp-action="Add" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Add</a>
+                            </td>
+                        }
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+        <td></td>
+        <td>
+            <h4>Selected</h4>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Label)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Deadline)
+                    </th>
+                    <th>
+                        Time Expectancy
+                    </th>
+                    <th>
+                        Task Type
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Field)
+                    </th>
+                    <th>
+                        Parent Task
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.WorkTask.Subject)
+                    </th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.ChosenWorkTasks)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Label)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Deadline)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimeExpectancy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaskType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Field)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParentWorkTask!.Label)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject!.Label)
+                    </td>
+
+                    @{
+                    roles = Model.WorkTaskRoles.Where(w => w.WorkTaskId == item.Id).Select(w => w.AccessType).ToList();
+                    }
+
+                    @if( item.CreatedBy == Model.UserId || roles.Contains(EAccessType.Admin) || roles.Contains(EAccessType.Edit))
+                    {
+                    <td>
+                        <a asp-action="WorkTaskDetails" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Details</a> |
+                        <a asp-action="EditWorkTask" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Edit</a> |
+                        <a asp-action="DeleteWorkTask" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Delete</a>
+                        <a asp-action="Remove" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Remove</a>
+                    </td>
+                    }
+                    else
+                    {
+                    <td>
+                        <a asp-action="WorkTaskDetails" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Details</a>
+                        <a asp-action="Remove" asp-route-id="@item.Id" asp-route-subjectId="@Model.SubjectId">Remove</a>
+                    </td>
+                    }
+                </tr>
+                }
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

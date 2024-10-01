@@ -1,0 +1,53 @@
+@model WebApp.Areas.Public.ViewModels.CalendarCreateEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Ewent</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Ewent.Label" class="control-label"></label>
+                <input asp-for="Ewent.Label" class="form-control" />
+                <span asp-validation-for="Ewent.Label" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ewent.Description" class="control-label"></label>
+                <input asp-for="Ewent.Description" class="form-control" />
+                <span asp-validation-for="Ewent.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ewent.From" class="control-label"></label>
+                <input asp-for="Ewent.From" class="form-control" />
+                <span asp-validation-for="Ewent.From" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ewent.Until" class="control-label"></label>
+                <input asp-for="Ewent.Until" class="form-control" />
+                <span asp-validation-for="Ewent.Until" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ewent.SubjectId" class="control-label"></label>
+                <select asp-for="Ewent.SubjectId" class ="form-control" asp-items="@Model.Subjects"></select>
+            </div>
+            <input type="hidden" asp-for="Ewent.Id" />
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
